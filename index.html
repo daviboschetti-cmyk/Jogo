@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tetris Multiplayer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- TELA DE LOBBY                                          -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <div id="tela-lobby">
+    <h1>TETRIS <span class="destaque">MULTIPLAYER</span></h1>
+
+    <div class="lobby-container">
+      <!-- Campo de nome do jogador -->
+      <div class="lobby-secao">
+        <label for="campo-nome">Seu nome:</label>
+        <input type="text" id="campo-nome" placeholder="Digite seu nome" maxlength="16" />
+      </div>
+
+      <!-- Criar sala -->
+      <div class="lobby-secao">
+        <button id="btn-criar-sala">🎮 Criar nova sala</button>
+      </div>
+
+      <!-- Separador -->
+      <div class="lobby-separador">— ou —</div>
+
+      <!-- Entrar em sala existente -->
+      <div class="lobby-secao">
+        <input type="text" id="campo-codigo-sala" placeholder="Código da sala (ex: ABCD)" maxlength="4" style="text-transform:uppercase;" />
+        <button id="btn-entrar-sala">🔗 Entrar na sala</button>
+      </div>
+
+      <!-- Mensagem de feedback do lobby -->
+      <div id="lobby-mensagem" class="lobby-mensagem"></div>
+
+      <!-- Área de espera: exibe código e lista de jogadores -->
+      <div id="area-espera" class="area-espera" style="display:none;">
+        <div class="codigo-sala-box">
+          Código da sala: <strong id="exibir-codigo-sala">----</strong>
+        </div>
+        <p class="espera-texto">Aguardando jogadores... (mínimo 2 para iniciar)</p>
+        <div>
+          <strong>Jogadores na sala:</strong>
+          <ul id="lista-jogadores"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- TELA DE JOGO                                           -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <div id="tela-jogo" style="display:none;">
+    <h1>TETRIS <span class="destaque">MULTIPLAYER</span></h1>
+
+    <div class="jogo-wrapper">
+
+      <!-- Painel esquerdo: placar e controles -->
+      <div class="painel-lateral painel-esquerdo">
+        <div class="info-sala">
+          Sala: <strong id="jogo-codigo-sala">----</strong>
+        </div>
+        <div class="info-jogador">
+          Jogador: <strong id="jogo-nome-jogador">---</strong>
+        </div>
+
+        <div class="informacoes">
+          <span>Pontos: <strong id="score">0</strong></span>
+          <span>Linhas: <strong id="lines">0</strong></span>
+        </div>
+
+        <div class="controles">
+          <p>
+            ← → Mover<br>
+            ↑ Girar peça<br>
+            ↓ Descer mais rápido<br>
+            Espaço: queda instantânea
+          </p>
+        </div>
+
+        <button id="restart">🔄 Reiniciar sala</button>
+      </div>
+
+      <!-- Canvas principal do jogador -->
+      <div class="area-jogo-principal">
+        <canvas id="game" width="320" height="640"></canvas>
+      </div>
+
+      <!-- Painel direito: campos dos adversários -->
+      <div class="painel-lateral painel-adversarios" id="painel-adversarios">
+        <div class="titulo-adversarios">Adversários</div>
+        <!-- Os canvas dos adversários são criados dinamicamente via JS -->
+      </div>
+
+    </div>
+
+    <!-- Overlay de fim de partida (vitória/derrota) -->
+    <div id="overlay-resultado" class="overlay-resultado" style="display:none;">
+      <div class="resultado-box">
+        <div id="resultado-titulo" class="resultado-titulo"></div>
+        <div id="resultado-mensagem" class="resultado-mensagem"></div>
+        <button id="btn-resultado-reiniciar">🔄 Jogar novamente</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Socket.IO (servido automaticamente pelo servidor) -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>

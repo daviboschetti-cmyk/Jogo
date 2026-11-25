@@ -1,0 +1,355 @@
+/* style.css — Tetris Multiplayer */
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #111;
+  color: white;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+h1 {
+  color: #00e5ff;
+  margin-bottom: 16px;
+  letter-spacing: 4px;
+  font-size: 2rem;
+}
+
+h1 .destaque {
+  color: #ffeb3b;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BOTÕES GLOBAIS
+══════════════════════════════════════════════════════════════ */
+
+button {
+  background: #00e5ff;
+  color: #111;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #00bcd4;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TELA DE LOBBY
+══════════════════════════════════════════════════════════════ */
+
+#tela-lobby {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 480px;
+}
+
+.lobby-container {
+  background: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 28px 32px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.lobby-secao {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lobby-secao label {
+  font-size: 14px;
+  color: #aaa;
+}
+
+.lobby-secao input {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #2a2a2a;
+  color: white;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.lobby-secao input:focus {
+  border-color: #00e5ff;
+}
+
+.lobby-secao button {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+}
+
+.lobby-separador {
+  text-align: center;
+  color: #555;
+  font-size: 14px;
+  margin: 2px 0;
+}
+
+/* Mensagens de feedback do lobby */
+.lobby-mensagem {
+  font-size: 13px;
+  min-height: 20px;
+  text-align: center;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+.lobby-mensagem-info   { color: #90caf9; }
+.lobby-mensagem-sucesso { color: #a5d6a7; }
+.lobby-mensagem-erro   { color: #ef9a9a; }
+
+/* Área de espera */
+.area-espera {
+  background: #252525;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 4px;
+}
+
+.codigo-sala-box {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.codigo-sala-box strong {
+  color: #ffeb3b;
+  font-size: 28px;
+  letter-spacing: 6px;
+}
+
+.espera-texto {
+  color: #aaa;
+  font-size: 13px;
+  text-align: center;
+  margin: 6px 0 10px;
+}
+
+.area-espera ul {
+  margin: 6px 0 0;
+  padding-left: 20px;
+  color: #ccc;
+}
+
+.area-espera ul li {
+  margin-bottom: 4px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TELA DE JOGO
+══════════════════════════════════════════════════════════════ */
+
+#tela-jogo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+/* Wrapper principal: lateral esquerda + canvas + lateral direita */
+.jogo-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ───────────────────────────────────────
+   Painéis laterais
+─────────────────────────────────────── */
+
+.painel-lateral {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 140px;
+}
+
+.painel-esquerdo {
+  align-items: flex-start;
+}
+
+.info-sala,
+.info-jogador {
+  font-size: 13px;
+  color: #aaa;
+}
+
+.info-sala strong,
+.info-jogador strong {
+  color: #fff;
+}
+
+.informacoes {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 17px;
+}
+
+.controles p {
+  color: #ccc;
+  line-height: 1.8;
+  font-size: 13px;
+  margin: 0;
+}
+
+/* ───────────────────────────────────────
+   Canvas principal
+─────────────────────────────────────── */
+
+.area-jogo-principal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#game {
+  border: 2px solid white;
+  background: #000;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ───────────────────────────────────────
+   Painel dos adversários
+─────────────────────────────────────── */
+
+.painel-adversarios {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  min-width: 180px;
+}
+
+.titulo-adversarios {
+  font-size: 13px;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+
+.adversario-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.adversario-nome {
+  font-size: 12px;
+  color: #ccc;
+  text-align: center;
+}
+
+.canvas-adversario {
+  border: 1px solid #555;
+  background: #000;
+  display: block;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   OVERLAY DE RESULTADO (vitória / derrota)
+══════════════════════════════════════════════════════════════ */
+
+.overlay-resultado {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.resultado-box {
+  background: #1e1e1e;
+  border: 2px solid #444;
+  border-radius: 16px;
+  padding: 40px 48px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 280px;
+}
+
+.resultado-titulo {
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.resultado-titulo.vitoria { color: #ffd700; }
+.resultado-titulo.derrota { color: #ff5252; }
+.resultado-titulo.empate  { color: #90caf9; }
+
+.resultado-mensagem {
+  font-size: 15px;
+  color: #ccc;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVIDADE
+══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 700px) {
+  .jogo-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .painel-esquerdo {
+    align-items: center;
+    text-align: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .painel-adversarios {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-width: unset;
+  }
+}
